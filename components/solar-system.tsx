@@ -177,7 +177,7 @@ function Sun() {
         emissive="#ffcc00"
         emissiveIntensity={1}
       />
-      <pointLight intensity={1.5} distance={100} color="#ffcc00" />
+      <pointLight intensity={1000} distance={100} color="#ffcc00" />
     </mesh>
   );
 }

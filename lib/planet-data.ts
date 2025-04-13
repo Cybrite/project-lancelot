@@ -11,7 +11,7 @@ export const PLANETS = [
     rotationPeriod: "58.6 days",
     orbitPeriod: "88 days",
     color: "#A9A9A9",
-    texturePath: "https://placehold.co/512x512/A9A9A9/ffffff?text=Mercury",
+    texturePath: "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1744570775/merciry_texture_wlo6bs.svg",
     funFacts: [
       "Mercury has no atmosphere, which means there is no wind or weather.",
       "Despite being the closest planet to the Sun, it's not the hottest (Venus is).",
@@ -31,7 +31,7 @@ export const PLANETS = [
     rotationPeriod: "243 days",
     orbitPeriod: "225 days",
     color: "#E6E6FA",
-    texturePath: "https://placehold.co/512x512/E6E6FA/000000?text=Venus",
+    texturePath: "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1744570748/venus_so0uim.svg",
     funFacts: [
       "Venus rotates backward compared to other planets.",
       "It's the hottest planet with a surface temperature of about 475°C.",
@@ -51,7 +51,7 @@ export const PLANETS = [
     rotationPeriod: "24 hours",
     orbitPeriod: "365.25 days",
     color: "#1E90FF",
-    texturePath: "https://placehold.co/512x512/1E90FF/ffffff?text=Earth",
+    texturePath: "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1744570745/earth_m2lpzg.svg",
     funFacts: [
       "Earth is the only planet not named after a god or goddess.",
       "71% of Earth's surface is covered by water.",
@@ -71,7 +71,7 @@ export const PLANETS = [
     rotationPeriod: "24.6 hours",
     orbitPeriod: "687 days",
     color: "#FF4500",
-    texturePath: "https://placehold.co/512x512/FF4500/ffffff?text=Mars",
+    texturePath: "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1744570746/mars_ovpzdd.svg",
     funFacts: [
       "Mars has the largest volcano in the solar system, Olympus Mons.",
       "Mars has two small moons, Phobos and Deimos.",
@@ -91,7 +91,7 @@ export const PLANETS = [
     rotationPeriod: "9.9 hours",
     orbitPeriod: "11.9 years",
     color: "#F5DEB3",
-    texturePath: "https://placehold.co/512x512/F5DEB3/000000?text=Jupiter",
+    texturePath: "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1744570747/jupiter_sbb3xb.svg",
     funFacts: [
       "Jupiter has the shortest day of all the planets, rotating once every 10 hours.",
       "The Great Red Spot is a storm that could fit 3 Earths inside it.",
@@ -111,7 +111,7 @@ export const PLANETS = [
     rotationPeriod: "10.7 hours",
     orbitPeriod: "29.5 years",
     color: "#F0E68C",
-    texturePath: "https://placehold.co/512x512/F0E68C/000000?text=Saturn",
+    texturePath: "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1744570745/saturn_luzgvs.svg",
     funFacts: [
       "Saturn's rings extend up to 175,000 miles from the planet but are only about 30 feet thick.",
       "Saturn has at least 82 moons, with Titan being the largest.",
@@ -131,7 +131,7 @@ export const PLANETS = [
     rotationPeriod: "17.2 hours",
     orbitPeriod: "84 years",
     color: "#00FFFF",
-    texturePath: "https://placehold.co/512x512/00FFFF/000000?text=Uranus",
+    texturePath: "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1744570745/uranus_giwtx7.svg",
     funFacts: [
       "Uranus rotates on its side with an axial tilt of about 98 degrees.",
       "It has 13 known rings, which are much fainter than Saturn's.",
@@ -151,7 +151,7 @@ export const PLANETS = [
     rotationPeriod: "16.1 hours",
     orbitPeriod: "165 years",
     color: "#4169E1",
-    texturePath: "https://placehold.co/512x512/4169E1/ffffff?text=Neptune",
+    texturePath: "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1744570746/neptune_con1ja.svg",
     funFacts: [
       "Neptune has the strongest winds in the solar system, reaching up to 2,100 km/h.",
       "It was the first planet to be predicted mathematically before being observed.",
