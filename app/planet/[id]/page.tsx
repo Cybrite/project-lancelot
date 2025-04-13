@@ -1,34 +1,45 @@
-"use client"
+"use client";
 
-import { useEffect, useState, Suspense } from "react"
-import { useParams } from "next/navigation"
-import { PLANETS } from "@/lib/planet-data"
-import Navbar from "@/components/navbar"
-import { Canvas } from "@react-three/fiber"
-import { OrbitControls, Stars, Html, useTexture } from "@react-three/drei"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { ArrowLeft, Info } from "lucide-react"
-import Link from "next/link"
-import AudioController from "@/components/audio-controller"
+import { useEffect, useState, Suspense, useRef } from "react";
+import { useParams } from "next/navigation";
+import { PLANETS } from "@/lib/planet-data";
+import Navbar from "@/components/navbar";
+import { Canvas, useFrame } from "@react-three/fiber";
+import * as THREE from "three";
+import { OrbitControls, Stars, Html, useTexture } from "@react-three/drei";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft, Info } from "lucide-react";
+import Link from "next/link";
+import AudioController from "@/components/audio-controller";
 
 export default function PlanetPage() {
-  const params = useParams()
-  const [planet, setPlanet] = useState(null)
-  const [loading, setLoading] = useState(true)
+  const params = useParams();
+  const [planet, setPlanet] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (params.id) {
-      const foundPlanet = PLANETS.find((p) => p.id === params.id)
+      const foundPlanet = PLANETS.find((p) => p.id === params.id);
       if (foundPlanet) {
-        setPlanet(foundPlanet)
+        setPlanet(foundPlanet);
       }
-      setLoading(false)
+      setLoading(false);
     }
-  }, [params.id])
+  }, [params.id]);
 
   if (loading) {
-    return <div className="flex items-center justify-center h-screen">Loading...</div>
+    return (
+      <div className="flex items-center justify-center h-screen">
+        Loading...
+      </div>
+    );
   }
 
   if (!planet) {
@@ -39,7 +50,7 @@ export default function PlanetPage() {
           <Button>Return to Solar System</Button>
         </Link>
       </div>
-    )
+    );
   }
 
   return (
@@ -47,7 +58,10 @@ export default function PlanetPage() {
       <Navbar />
 
       <div className="pt-20 pb-10 px-4 md:px-6 max-w-7xl mx-auto">
-        <Link href="/" className="inline-flex items-center text-blue-400 hover:text-blue-300 mb-6">
+        <Link
+          href="/"
+          className="inline-flex items-center text-blue-400 hover:text-blue-300 mb-6"
+        >
           <ArrowLeft className="mr-2 h-4 w-4" />
           Back to Solar System
         </Link>
@@ -55,19 +69,46 @@ export default function PlanetPage() {
         <div className="grid md:grid-cols-2 gap-8">
           <div className="h-[400px] md:h-[600px] rounded-lg overflow-hidden border border-white/10">
             <Canvas>
-              <ambientLight intensity={0.3} />
-              <pointLight position={[10, 10, 10]} intensity={1.5} />
+              {/* Improved lighting setup */}
+              <ambientLight intensity={0.5} /> {/* Increased from 0.3 */}
+              <pointLight position={[10, 10, 10]} intensity={2} />{" "}
+              {/* Increased from 1.5 */}
+              <pointLight
+                position={[-10, -10, -10]}
+                intensity={0.5}
+                color="#aaccff"
+              />{" "}
+              {/* Fill light */}
+              <hemisphereLight args={["#ffffff", "#333366", 0.8]} />{" "}
+              {/* Adds nice environmental lighting */}
               <Suspense fallback={<Html center>Loading Planet...</Html>}>
                 <PlanetModel texture={planet.texturePath} />
               </Suspense>
-              <OrbitControls enablePan={false} />
-              <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade />
+              <OrbitControls
+                enablePan={false}
+                enableZoom={true}
+                minDistance={6}
+                maxDistance={20}
+                autoRotate={false}
+                autoRotateSpeed={0.5}
+              />
+              <Stars
+                radius={100}
+                depth={50}
+                count={5000}
+                factor={4}
+                saturation={1}
+                fade
+              />
             </Canvas>
           </div>
 
           <div className="space-y-6">
             <div>
-              <h1 className="text-4xl font-bold" style={{ color: planet.color }}>
+              <h1
+                className="text-4xl font-bold"
+                style={{ color: planet.color }}
+              >
                 {planet.name}
               </h1>
               <p className="text-gray-400 mt-2">{planet.description}</p>
@@ -76,7 +117,9 @@ export default function PlanetPage() {
             <div className="grid grid-cols-2 gap-4">
               <Card className="bg-black/50 border-white/10">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-medium">Diameter</CardTitle>
+                  <CardTitle className="text-sm font-medium">
+                    Diameter
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-2xl font-bold">{planet.realSize}</p>
@@ -85,7 +128,9 @@ export default function PlanetPage() {
 
               <Card className="bg-black/50 border-white/10">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-medium">Day Length</CardTitle>
+                  <CardTitle className="text-sm font-medium">
+                    Day Length
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-2xl font-bold">{planet.rotationPeriod}</p>
@@ -94,7 +139,9 @@ export default function PlanetPage() {
 
               <Card className="bg-black/50 border-white/10">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-medium">Year Length</CardTitle>
+                  <CardTitle className="text-sm font-medium">
+                    Year Length
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-2xl font-bold">{planet.orbitPeriod}</p>
@@ -103,7 +150,9 @@ export default function PlanetPage() {
 
               <Card className="bg-black/50 border-white/10">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-medium">Position</CardTitle>
+                  <CardTitle className="text-sm font-medium">
+                    Position
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-2xl font-bold">
@@ -120,7 +169,9 @@ export default function PlanetPage() {
                   <Info className="h-5 w-5 mr-2" />
                   Fun Facts
                 </CardTitle>
-                <CardDescription>Interesting things about {planet.name}</CardDescription>
+                <CardDescription>
+                  Interesting things about {planet.name}
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2">
@@ -141,16 +192,43 @@ export default function PlanetPage() {
         <AudioController />
       </div>
     </div>
-  )
+  );
 }
 
 function PlanetModel({ texture }) {
-  const planetTexture = useTexture(texture)
+  const planetTexture = useTexture(texture);
+  // Add slow rotation animation
+  const meshRef = useRef();
+
+  useFrame((state, delta) => {
+    if (meshRef.current) {
+      meshRef.current.rotation.y += delta * 0.1; // Slow rotation effect
+    }
+  });
 
   return (
-    <mesh rotation={[0, 0, 0]}>
-      <sphereGeometry args={[4, 64, 64]} />
-      <meshStandardMaterial map={planetTexture} metalness={0.2} roughness={0.8} />
-    </mesh>
-  )
+    <>
+      {/* Add atmospheric glow effect */}
+      <mesh>
+        <sphereGeometry args={[4.2, 32, 32]} />
+        <meshStandardMaterial
+          color="#4488ff"
+          transparent={true}
+          opacity={0.15}
+          side={THREE.BackSide}
+        />
+      </mesh>
+
+      {/* The planet itself with improved material */}
+      <mesh ref={meshRef} rotation={[0, 0, 0]}>
+        <sphereGeometry args={[4, 64, 64]} />
+        <meshStandardMaterial
+          map={planetTexture}
+          metalness={0.1}
+          roughness={0.6}
+          envMapIntensity={1.5}
+        />
+      </mesh>
+    </>
+  );
 }
