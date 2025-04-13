@@ -197,6 +197,36 @@ function Planet({
   const planetRef = useRef();
   const orbitRef = useRef();
 
+  // Keep the existing eccentricity values
+  const eccentricity =
+    planet.id === "mercury"
+      ? 0.21
+      : planet.id === "venus"
+      ? 0.01
+      : planet.id === "earth"
+      ? 0.017
+      : planet.id === "mars"
+      ? 0.09
+      : planet.id === "jupiter"
+      ? 0.05
+      : planet.id === "saturn"
+      ? 0.06
+      : planet.id === "uranus"
+      ? 0.05
+      : planet.id === "neptune"
+      ? 0.01
+      : 0.1;
+
+  // Calculate semi-major and semi-minor axes for the ellipse
+  const semiMajorAxis = orbitDistance;
+  const semiMinorAxis =
+    orbitDistance * Math.sqrt(1 - eccentricity * eccentricity);
+
+  // Calculate the focal distance (distance from center to focus)
+  const focalDistance = Math.sqrt(
+    semiMajorAxis * semiMajorAxis - semiMinorAxis * semiMinorAxis
+  );
+
   // Create a fallback texture with the planet's color
   const createFallbackTexture = (color = "#cccccc") => {
     const canvas = document.createElement("canvas");
@@ -243,26 +273,28 @@ function Planet({
     }
 
     if (planetRef.current) {
-      // Update planet position in orbit
-      planetRef.current.position.x = Math.sin(time) * orbitDistance;
-      planetRef.current.position.z = Math.cos(time) * orbitDistance;
+      // Position using ellipse formula with Sun at one focus
+      // Offset the x position by focalDistance
+      planetRef.current.position.x =
+        -focalDistance + semiMajorAxis * Math.cos(time);
+      planetRef.current.position.z = semiMinorAxis * Math.sin(time);
 
       // Rotate planet
       planetRef.current.rotation.y += delta * 0.5;
     }
   });
 
-  // Create orbit path
+  // Create elliptical orbit path with the Sun at one focus
   const orbitPath = useMemo(() => {
     const curve = new THREE.EllipseCurve(
+      -focalDistance, // x center is offset by focal distance
+      0, // y center
+      semiMajorAxis,
+      semiMinorAxis,
       0,
-      0, // center
-      orbitDistance,
-      orbitDistance, // xRadius, yRadius
-      0,
-      2 * Math.PI, // startAngle, endAngle
-      false, // clockwise
-      0 // rotation
+      2 * Math.PI,
+      false,
+      0
     );
 
     const points = curve.getPoints(100);
@@ -271,7 +303,7 @@ function Planet({
     );
 
     return geometry;
-  }, [orbitDistance]);
+  }, [semiMajorAxis, semiMinorAxis, focalDistance]);
 
   return (
     <group>
