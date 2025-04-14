@@ -104,7 +104,15 @@ export default function SolarSystem() {
   );
 }
 
-function SolarSystemScene({ orbitSpeed, isPaused, showLabels }) {
+function SolarSystemScene({ 
+  orbitSpeed, 
+  isPaused, 
+  showLabels 
+}: { 
+  orbitSpeed: number; 
+  isPaused: boolean; 
+  showLabels: boolean;
+}) {
   const router = useRouter();
 
   return (
@@ -137,7 +145,7 @@ function SolarSystemScene({ orbitSpeed, isPaused, showLabels }) {
 // Add this component before Planet function
 
 function AsteroidBelt({ orbitDistance = 30, count = 100, isPaused = false }) {
-  const mainBeltRef = useRef();
+  const mainBeltRef = useRef<THREE.Group>(null);
   
   // Create a bunch of actual meshes instead of points
   useFrame((state, delta) => {
@@ -155,7 +163,7 @@ function AsteroidBelt({ orbitDistance = 30, count = 100, isPaused = false }) {
       </mesh>
       
       {/* Use instanced meshes for better performance */}
-      <instancedMesh args={[null, null, count]}>
+      <instancedMesh args={[undefined, undefined, count]}>
         <boxGeometry args={[0.7, 0.7, 0.7]} />
         <meshStandardMaterial color="#999999" />
         {Array.from({ length: count }).map((_, i) => {
@@ -192,8 +200,8 @@ function AsteroidBelt({ orbitDistance = 30, count = 100, isPaused = false }) {
 }
 
 // Update the Sun component to use a placeholder texture
-function Sun() {
-  const sunRef = useRef();
+function Sun({ position = [0, 0, 0] }: { position?: [number, number, number] }) {
+  const sunRef = useRef<THREE.Mesh>(null);
 
   // Create a simple sun texture with a radial gradient
   const sunTexture = useMemo(() => {
@@ -201,6 +209,11 @@ function Sun() {
     canvas.width = 512;
     canvas.height = 512;
     const context = canvas.getContext("2d");
+    
+    if (!context) {
+      console.error("Failed to get 2D context");
+      return new THREE.Texture(); // Return empty texture as fallback
+    }
 
     // Create a radial gradient
     const gradient = context.createRadialGradient(
@@ -230,7 +243,7 @@ function Sun() {
   });
 
   return (
-    <mesh ref={sunRef}>
+    <mesh ref={sunRef} position={position}>
       <sphereGeometry args={[5, 32, 32]} />
       <meshStandardMaterial
         map={sunTexture}
@@ -243,6 +256,22 @@ function Sun() {
 }
 
 // Update the Planet component to handle texture loading errors
+interface PlanetProps {
+  planet: {
+    id: string;
+    name: string;
+    color: string;
+  };
+  orbitDistance: number;
+  orbitSpeed: number;
+  size: number;
+  texturePath: string;
+  orbitColor: string;
+  isPaused: boolean;
+  showLabel: boolean;
+  onClick: () => void;
+}
+
 function Planet({
   planet,
   orbitDistance,
@@ -253,9 +282,9 @@ function Planet({
   isPaused,
   showLabel,
   onClick,
-}) {
-  const planetRef = useRef();
-  const orbitRef = useRef();
+}: PlanetProps) {
+  const planetRef = useRef<THREE.Group>(null);
+  const orbitRef = useRef<THREE.Line>(null);
 
   // Keep the existing eccentricity values
   const eccentricity =
@@ -293,6 +322,11 @@ function Planet({
     canvas.width = 512;
     canvas.height = 512;
     const context = canvas.getContext("2d");
+    
+    if (!context) {
+      console.error("Failed to get 2D context");
+      return new THREE.Texture(); // Return empty texture as fallback
+    }
 
     // Fill with base color
     context.fillStyle = color;
@@ -313,15 +347,23 @@ function Planet({
   };
 
   // Use texture loading with error handling
+  interface TextureSuccessCallback {
+    (loadedTexture: THREE.Texture): void;
+  }
+
+  interface TextureErrorCallback {
+    (error: Error): THREE.Texture;
+  }
+
   const texture = useTexture(
     texturePath,
-    (loadedTexture) => {
+    ((loadedTexture: THREE.Texture): void => {
       console.log(`Loaded texture: ${texturePath}`);
-    },
-    (error) => {
+    }) as TextureSuccessCallback,
+    ((error: Error): THREE.Texture => {
       console.error(`Error loading texture ${texturePath}:`, error);
       return createFallbackTexture(planet.color);
-    }
+    }) as TextureErrorCallback
   );
 
   const [hovered, setHovered] = useState(false);
@@ -368,7 +410,7 @@ function Planet({
   return (
     <group>
       {/* Orbit path */}
-      <line ref={orbitRef}>
+      <lineSegments ref={orbitRef}>
         <bufferGeometry attach="geometry" {...orbitPath} />
         <lineBasicMaterial
           attach="material"
@@ -377,7 +419,19 @@ function Planet({
           transparent
           linewidth={1}
         />
-      </line>
+      </lineSegments>
+
+      {/* for non dotted line */}
+      {/* <line ref={orbitRef}>
+        <bufferGeometry attach="geometry" {...orbitPath} />
+        <lineBasicMaterial
+          attach="material"
+          color={orbitColor}
+          opacity={0.3}
+          transparent
+          linewidth={1}
+        />
+      </line> */}
 
       {/* Planet */}
       <group ref={planetRef}>
