@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import { Suspense } from "react"
-import { Canvas } from "@react-three/fiber"
-import { OrbitControls, Stars } from "@react-three/drei"
-import * as THREE from "three"
-import { useTexture } from "@react-three/drei"
+import { Suspense } from "react";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, Stars } from "@react-three/drei";
+import * as THREE from "three";
+import { useTexture } from "@react-three/drei";
 
-export default function PlanetPage({ params }) {
-  const planetId = params.id
-  const textureUrl = `/textures/${planetId}.jpg`
+export default function PlanetPage({ params }: { params: { id: string } }) {
+  const planetId = params.id;
+  const textureUrl = `/textures/${planetId}.jpg`;
 
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
@@ -19,55 +19,75 @@ export default function PlanetPage({ params }) {
           <PlanetModel texture={textureUrl} />
         </Suspense>
         <OrbitControls />
-        <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade={true} />
+        <Stars
+          radius={100}
+          depth={50}
+          count={5000}
+          factor={4}
+          saturation={0}
+          fade={true}
+        />
       </Canvas>
     </div>
-  )
+  );
 }
 
 // Update the PlanetModel component to handle texture loading errors
-function PlanetModel({ texture }) {
+function PlanetModel({ texture }: { texture: string }) {
   // Create a fallback texture with the planet's color
   const createFallbackTexture = (color = "#cccccc") => {
-    const canvas = document.createElement("canvas")
-    canvas.width = 512
-    canvas.height = 512
-    const context = canvas.getContext("2d")
+    const canvas = document.createElement("canvas");
+    canvas.width = 512;
+    canvas.height = 512;
+    const context = canvas.getContext("2d");
+
+    if (!context) {
+      console.error("Failed to get 2D context");
+      return new THREE.Texture();
+    }
 
     // Fill with base color
-    context.fillStyle = color
-    context.fillRect(0, 0, canvas.width, canvas.height)
+    context.fillStyle = color;
+    context.fillRect(0, 0, canvas.width, canvas.height);
 
     // Add some noise/texture
     for (let i = 0; i < 5000; i++) {
-      const x = Math.random() * canvas.width
-      const y = Math.random() * canvas.height
-      const radius = Math.random() * 2
-      context.beginPath()
-      context.arc(x, y, radius, 0, Math.PI * 2)
-      context.fillStyle = `rgba(255, 255, 255, ${Math.random() * 0.2})`
-      context.fill()
+      const x = Math.random() * canvas.width;
+      const y = Math.random() * canvas.height;
+      const radius = Math.random() * 2;
+      context.beginPath();
+      context.arc(x, y, radius, 0, Math.PI * 2);
+      context.fillStyle = `rgba(255, 255, 255, ${Math.random() * 0.2})`;
+      context.fill();
     }
 
-    return new THREE.CanvasTexture(canvas)
-  }
+    return new THREE.CanvasTexture(canvas);
+  };
+
+  // Define types for the callbacks
+  type TextureSuccessCallback = (texture: THREE.Texture) => void;
+  type TextureErrorCallback = (error: Error) => THREE.Texture;
 
   // Use a placeholder texture
   const planetTexture = useTexture(
     texture,
-    (loadedTexture) => {
-      console.log(`Loaded texture: ${texture}`)
-    },
-    (error) => {
-      console.error(`Error loading texture ${texture}:`, error)
-      return createFallbackTexture()
-    },
-  )
+    ((loadedTexture: THREE.Texture): void => {
+      console.log(`Loaded texture: ${texture}`);
+    }) as TextureSuccessCallback,
+    ((error: Error): THREE.Texture => {
+      console.error(`Error loading texture ${texture}:`, error);
+      return createFallbackTexture();
+    }) as TextureErrorCallback
+  );
 
   return (
     <mesh rotation={[0, 0, 0]}>
       <sphereGeometry args={[4, 64, 64]} />
-      <meshStandardMaterial map={planetTexture} metalness={0.2} roughness={0.8} />
+      <meshStandardMaterial
+        map={planetTexture}
+        metalness={0.2}
+        roughness={0.8}
+      />
     </mesh>
-  )
+  );
 }
