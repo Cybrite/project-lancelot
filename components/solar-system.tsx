@@ -104,13 +104,13 @@ export default function SolarSystem() {
   );
 }
 
-function SolarSystemScene({ 
-  orbitSpeed, 
-  isPaused, 
-  showLabels 
-}: { 
-  orbitSpeed: number; 
-  isPaused: boolean; 
+function SolarSystemScene({
+  orbitSpeed,
+  isPaused,
+  showLabels,
+}: {
+  orbitSpeed: number;
+  isPaused: boolean;
   showLabels: boolean;
 }) {
   const router = useRouter();
@@ -146,22 +146,27 @@ function SolarSystemScene({
 
 function AsteroidBelt({ orbitDistance = 30, count = 100, isPaused = false }) {
   const mainBeltRef = useRef<THREE.Group>(null);
-  
+
   // Create a bunch of actual meshes instead of points
   useFrame((state, delta) => {
     if (!isPaused && mainBeltRef.current) {
       mainBeltRef.current.rotation.y += delta * 0.05;
     }
   });
-  
+
   return (
     <group ref={mainBeltRef}>
       {/* Create a visible ring to mark the asteroid belt */}
-      <mesh rotation={[Math.PI/2, 0, 0]}>
+      <mesh rotation={[Math.PI / 2, 0, 0]}>
         <ringGeometry args={[orbitDistance - 2, orbitDistance + 2, 64]} />
-        <meshBasicMaterial color="#444444" transparent opacity={0.3} side={THREE.DoubleSide} />
+        <meshBasicMaterial
+          color="#444444"
+          transparent
+          opacity={0.3}
+          side={THREE.DoubleSide}
+        />
       </mesh>
-      
+
       {/* Use instanced meshes for better performance */}
       <instancedMesh args={[undefined, undefined, count]}>
         <boxGeometry args={[0.7, 0.7, 0.7]} />
@@ -173,19 +178,23 @@ function AsteroidBelt({ orbitDistance = 30, count = 100, isPaused = false }) {
           const x = Math.cos(angle) * distance;
           const y = (Math.random() - 0.5) * 3;
           const z = Math.sin(angle) * distance;
-          
+
           // Set matrix for each instance
           const matrix = new THREE.Matrix4();
           matrix.setPosition(x, y, z);
-          
+
           // Random rotation and scale
-          matrix.multiply(new THREE.Matrix4().makeRotationY(Math.random() * Math.PI));
-          matrix.multiply(new THREE.Matrix4().makeScale(
-            0.5 + Math.random() * 1.0,
-            0.5 + Math.random() * 1.0,
-            0.5 + Math.random() * 1.0
-          ));
-          
+          matrix.multiply(
+            new THREE.Matrix4().makeRotationY(Math.random() * Math.PI)
+          );
+          matrix.multiply(
+            new THREE.Matrix4().makeScale(
+              0.5 + Math.random() * 1.0,
+              0.5 + Math.random() * 1.0,
+              0.5 + Math.random() * 1.0
+            )
+          );
+
           return (
             <primitive
               key={i}
@@ -200,7 +209,11 @@ function AsteroidBelt({ orbitDistance = 30, count = 100, isPaused = false }) {
 }
 
 // Update the Sun component to use a placeholder texture
-function Sun({ position = [0, 0, 0] }: { position?: [number, number, number] }) {
+function Sun({
+  position = [0, 0, 0],
+}: {
+  position?: [number, number, number];
+}) {
   const sunRef = useRef<THREE.Mesh>(null);
 
   // Create a simple sun texture with a radial gradient
@@ -209,7 +222,7 @@ function Sun({ position = [0, 0, 0] }: { position?: [number, number, number] }) 
     canvas.width = 512;
     canvas.height = 512;
     const context = canvas.getContext("2d");
-    
+
     if (!context) {
       console.error("Failed to get 2D context");
       return new THREE.Texture(); // Return empty texture as fallback
@@ -250,7 +263,7 @@ function Sun({ position = [0, 0, 0] }: { position?: [number, number, number] }) 
         emissive="#ffcc00"
         emissiveIntensity={5}
       />
-      <pointLight intensity={5000} distance={10**20} color="#ffcc00" />
+      <pointLight intensity={5000} distance={10 ** 20} color="#ffcc00" />
     </mesh>
   );
 }
@@ -322,7 +335,7 @@ function Planet({
     canvas.width = 512;
     canvas.height = 512;
     const context = canvas.getContext("2d");
-    
+
     if (!context) {
       console.error("Failed to get 2D context");
       return new THREE.Texture(); // Return empty texture as fallback
@@ -421,18 +434,6 @@ function Planet({
         />
       </lineSegments>
 
-      {/* for non dotted line */}
-      {/* <line ref={orbitRef}>
-        <bufferGeometry attach="geometry" {...orbitPath} />
-        <lineBasicMaterial
-          attach="material"
-          color={orbitColor}
-          opacity={0.3}
-          transparent
-          linewidth={1}
-        />
-      </line> */}
-
       {/* Planet */}
       <group ref={planetRef}>
         <mesh
@@ -442,6 +443,44 @@ function Planet({
         >
           <sphereGeometry args={[size, 32, 32]} />
           <meshStandardMaterial map={texture} metalness={0.2} roughness={0.8} />
+
+          {/* Saturn's Rings - only render if the planet is Saturn */}
+          {planet.id === "saturn" && (
+            <group rotation={[Math.PI / 2.5, 0, 0]}>
+              {" "}
+              {/* Tilt the rings */}
+              {/* Inner ring */}
+              <mesh>
+                <ringGeometry args={[size * 1.2, size * 1.7, 64]} />
+                <meshStandardMaterial
+                  color="#f8e8c7"
+                  side={THREE.DoubleSide}
+                  transparent
+                  opacity={0.8}
+                />
+              </mesh>
+              {/* Middle ring - slightly different color */}
+              <mesh>
+                <ringGeometry args={[size * 1.7, size * 2.2, 64]} />
+                <meshStandardMaterial
+                  color="#e0c194"
+                  side={THREE.DoubleSide}
+                  transparent
+                  opacity={0.7}
+                />
+              </mesh>
+              {/* Outer ring - more transparent */}
+              <mesh>
+                <ringGeometry args={[size * 2.2, size * 2.7, 64]} />
+                <meshStandardMaterial
+                  color="#d4b683"
+                  side={THREE.DoubleSide}
+                  transparent
+                  opacity={0.5}
+                />
+              </mesh>
+            </group>
+          )}
 
           {/* Planet label */}
           {showLabel && (
