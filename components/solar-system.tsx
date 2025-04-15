@@ -248,9 +248,9 @@ function Sun({ position = [0, 0, 0] }: { position?: [number, number, number] }) 
       <meshStandardMaterial
         map={sunTexture}
         emissive="#ffcc00"
-        emissiveIntensity={1}
+        emissiveIntensity={5}
       />
-      <pointLight intensity={1000} distance={100} color="#ffcc00" />
+      <pointLight intensity={5000} distance={10**20} color="#ffcc00" />
     </mesh>
   );
 }
