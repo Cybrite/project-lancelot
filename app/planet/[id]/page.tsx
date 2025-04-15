@@ -210,7 +210,6 @@ export default function PlanetPage() {
 
 function PlanetModel({ texture }: { texture: string }) {
   const planetTexture = useTexture(texture);
-  // Add slow rotation animation
   const meshRef = useRef<THREE.Mesh | null>(null);
   const params = useParams();
   const isSaturn = params.id === "saturn";

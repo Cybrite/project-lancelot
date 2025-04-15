@@ -12,7 +12,6 @@ export default function AudioController() {
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
   useEffect(() => {
-    // Create audio element
     try {
       audioRef.current = new Audio("/placeholder-audio.mp3")
 
@@ -50,13 +49,11 @@ export default function AudioController() {
     if (isPlaying) {
       audioRef.current.pause()
     } else {
-      // Use a promise to handle play() failures (browser policies may block autoplay)
       const playPromise = audioRef.current.play()
 
       if (playPromise !== undefined) {
         playPromise
           .then(() => {
-            // Audio started playing successfully
           })
           .catch((error) => {
             console.error("Audio playback failed:", error)
