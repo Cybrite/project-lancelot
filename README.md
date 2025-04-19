@@ -1,20 +1,29 @@
-# Solar Explorer
+# Solar Explorer 🚀
 
-![Solar Explorer](https://res.cloudinary.com/dqqyuvg1v/image/upload/v1744570745/solar-explorer-preview.png)
+![Solar Explorer](https://res.cloudinary.com/dqqyuvg1v/image/upload/v1745042336/waste2way/mif3awhydzpz4d4hp6af.jpg)
+_Explore our vast solar system in stunning 3D visualization_
 
-An interactive 3D solar system visualization that allows users to explore planets in our solar system with detailed information and interactive features.
+An interactive 3D solar system visualization built with Next.js and Three.js that allows users to explore planets in our solar system with detailed information and interactive features. Perfect for education, astronomy enthusiasts, or anyone curious about space.
 
-## Features
+## ✨ Features
 
-- **Interactive 3D Solar System**: Navigate through a visually stunning representation of our solar system
-- **Detailed Planet Information**: Explore individual planets with scientific data and fun facts
-- **Realistic Orbital Mechanics**: Planets follow accurate elliptical orbits with proper scale and speed
-- **Adjustable Simulation Controls**: Change orbit speed, pause the simulation, and toggle planet labels
-- **Responsive Design**: Works across desktop and mobile devices
-- **Dark/Light Mode Support**: Choose your preferred viewing experience
-- **Audio Integration**: Optional ambient audio with volume controls
+- **Interactive 3D Solar System**: Navigate through a visually stunning representation of our solar system with accurate planetary positions and orbits
+- **Detailed Planet Information**: Explore individual planets with scientific data, high-resolution textures, and fascinating fun facts
+- **Realistic Orbital Mechanics**: Planets follow accurate elliptical orbits with proper scale and speed based on astronomical data
+- **Special Celestial Objects**: Includes features like asteroid belts, comets, and other space phenomena
+- **Adjustable Simulation Controls**: Change orbit speed, pause the simulation, toggle planet labels, and reset the view
+- **Responsive Design**: Works seamlessly across desktop, tablet, and mobile devices
+- **Dark/Light Mode Support**: Choose your preferred viewing experience with system theme detection
+- **Audio Integration**: Optional ambient space soundscape with volume controls
 
-## Technologies Used
+## 🛠️ Prerequisites
+
+Before installing, make sure you have:
+
+- Node.js 18.0 or higher
+- npm, yarn, pnpm, or bun package manager
+
+## 🚀 Technologies Used
 
 - **Next.js 15.3.0**: React framework for building the application
 - **React Three Fiber & Drei**: For 3D rendering and effects
