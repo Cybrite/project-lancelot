@@ -23,20 +23,16 @@ export default function SolarSystemScene({
   return (
     <Suspense fallback={<Html center>Loading Solar System...</Html>}>
       <group>
-        {/* Sun */}
         <Sun position={[0, 0, 0]} />
 
-        {/* Asteroid Belt - positioned between Mars (25) and Jupiter (35) */}
         <AsteroidBelt orbitDistance={30} isPaused={isPaused} />
 
-        {/* Comet */}
         <Comet
           orbitSpeed={orbitSpeed * 0.3}
           isPaused={isPaused}
           showLabel={showLabels}
         />
 
-        {/* Planets */}
         {PLANETS.map((planet) => (
           <Planet
             key={planet.id}
