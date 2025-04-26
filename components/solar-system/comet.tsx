@@ -50,7 +50,6 @@ export default function Comet({ orbitSpeed, isPaused, showLabel }: CometProps) {
         semiMinorAxis * Math.sin(time)
       );
 
-      // Distance from sun affects speed (Kepler's laws)
       const distanceToSun = currentPosition.length();
       const speedFactor = Math.max(0.5, 5 / (distanceToSun / 10));
 

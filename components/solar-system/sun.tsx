@@ -9,7 +9,6 @@ interface SunProps {
 export default function Sun({ position = [0, 0, 0] }: SunProps) {
   const sunRef = useRef<THREE.Mesh>(null);
 
-  // Create a simple sun texture with a radial gradient
   const sunTexture = useMemo(() => {
     const canvas = document.createElement("canvas");
     canvas.width = 512;
@@ -18,7 +17,7 @@ export default function Sun({ position = [0, 0, 0] }: SunProps) {
 
     if (!context) {
       console.error("Failed to get 2D context");
-      return new THREE.Texture(); // Return empty texture as fallback
+      return new THREE.Texture();
     }
 
     // Create a radial gradient

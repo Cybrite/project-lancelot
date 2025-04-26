@@ -24,26 +24,21 @@ export default function AsteroidBelt({
   const mainBeltRef = useRef<THREE.Group>(null);
   const asteroidsRef = useRef<THREE.InstancedMesh>(null);
 
-  // Create realistic asteroid distribution (with Kirkwood gaps)
   const matrices = useMemo(() => {
-    const kirkwoodGaps = [2.06, 2.5, 2.82, 3.27]; // Actual Kirkwood gaps ratios
-    const scaledGaps = kirkwoodGaps.map((gap) => gap * (orbitDistance / 2.8)); // Scale to our orbit
+    const kirkwoodGaps = [2.06, 2.5, 2.82, 3.27];
+    const scaledGaps = kirkwoodGaps.map((gap) => gap * (orbitDistance / 2.8));
 
     return Array.from({ length: count }).map((_, i) => {
       const matrix = new THREE.Matrix4();
 
-      // Use more realistic asteroid distribution
       const angle = Math.random() * Math.PI * 2;
       let radius: number;
       let inGap: boolean;
       do {
-        // Generate candidate radius with density concentrated toward middle of belt
         radius = orbitDistance + (Math.random() * beltWidth * 2 - beltWidth);
-        // Check if in a Kirkwood gap
         inGap = scaledGaps.some((gap) => Math.abs(radius - gap) < 0.3);
       } while (Math.random() > density || inGap);
 
-      // Add slight inclination to the orbital plane
       const inclination = (Math.random() - 0.5) * 0.2;
       const x = Math.cos(angle) * radius;
       const y = Math.sin(inclination) * radius;
@@ -51,7 +46,6 @@ export default function AsteroidBelt({
 
       matrix.setPosition(x, y, z);
 
-      // Random rotation
       matrix.multiply(
         new THREE.Matrix4().makeRotationX(Math.random() * Math.PI)
       );
@@ -62,7 +56,6 @@ export default function AsteroidBelt({
         new THREE.Matrix4().makeRotationZ(Math.random() * Math.PI)
       );
 
-      // Varied scale based on power law distribution (more small asteroids)
       const size = Math.pow(Math.random(), 2) * 1.2 + 0.3;
       matrix.multiply(new THREE.Matrix4().makeScale(size, size, size));
 
@@ -70,7 +63,6 @@ export default function AsteroidBelt({
     });
   }, [orbitDistance, count, beltWidth, density]);
 
-  // Individual asteroid rotation and orbital speeds
   useFrame((state, delta) => {
     if (isPaused) return;
 
@@ -79,16 +71,11 @@ export default function AsteroidBelt({
     }
 
     if (asteroidsRef.current) {
-      // Add subtle wobble to the whole belt
       const time = state.clock.getElapsedTime();
       mainBeltRef.current.rotation.x = Math.sin(time * 0.1) * 0.01;
-
-      // Individual asteroid rotation can be added here
-      // (would require a different approach than instancedMesh)
     }
   });
 
-  // Create a material based on metallic property
   const asteroidMaterial = useMemo(() => {
     if (metallic) {
       return new THREE.MeshStandardMaterial({
@@ -109,7 +96,6 @@ export default function AsteroidBelt({
 
   return (
     <group ref={mainBeltRef}>
-      {/* Belt background with slight tilt for realism */}
       <mesh rotation={[Math.PI / 2 + 0.02, 0, 0]}>
         <ringGeometry
           args={[orbitDistance - beltWidth, orbitDistance + beltWidth, 128]}
@@ -123,7 +109,6 @@ export default function AsteroidBelt({
         />
       </mesh>
 
-      {/* Asteroids with improved geometry */}
       <instancedMesh
         ref={asteroidsRef}
         args={[undefined, undefined, count]}

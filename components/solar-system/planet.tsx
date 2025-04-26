@@ -109,7 +109,6 @@ export default function Planet({
 
   return (
     <group>
-      {/* Orbit path */}
       <lineSegments ref={orbitRef}>
         <bufferGeometry attach="geometry" {...orbitPath} />
         <lineBasicMaterial
@@ -121,7 +120,6 @@ export default function Planet({
         />
       </lineSegments>
 
-      {/* Planet */}
       <group ref={planetRef}>
         <mesh
           onPointerOver={() => setHovered(true)}
@@ -131,10 +129,8 @@ export default function Planet({
           <sphereGeometry args={[size, 32, 32]} />
           <meshStandardMaterial map={texture} metalness={0.2} roughness={0.8} />
 
-          {/* Saturn's Rings - only render if the planet is Saturn */}
           {planet.id === "saturn" && (
             <group rotation={[Math.PI / 2.5, 0, 0]}>
-              {/* Inner ring */}
               <mesh>
                 <ringGeometry args={[size * 1.2, size * 1.7, 64]} />
                 <meshStandardMaterial
@@ -144,7 +140,6 @@ export default function Planet({
                   opacity={0.8}
                 />
               </mesh>
-              {/* Middle ring - slightly different color */}
               <mesh>
                 <ringGeometry args={[size * 1.7, size * 2.2, 64]} />
                 <meshStandardMaterial
@@ -154,7 +149,6 @@ export default function Planet({
                   opacity={0.7}
                 />
               </mesh>
-              {/* Outer ring - more transparent */}
               <mesh>
                 <ringGeometry args={[size * 2.2, size * 2.7, 64]} />
                 <meshStandardMaterial
@@ -167,7 +161,6 @@ export default function Planet({
             </group>
           )}
 
-          {/* Planet label */}
           {showLabel && (
             <Html position={[0, size + 1, 0]} center distanceFactor={10}>
               <div
@@ -179,7 +172,6 @@ export default function Planet({
             </Html>
           )}
 
-          {/* Hover effect */}
           {hovered && (
             <mesh>
               <sphereGeometry args={[size + 0.1, 32, 32]} />

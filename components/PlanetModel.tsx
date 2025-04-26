@@ -41,10 +41,8 @@ export default function PlanetModel({ texture, planetId }: PlanetModelProps) {
           envMapIntensity={1.5}
         />
 
-        {/* Saturn's rings in the detailed view */}
         {isSaturn && (
           <group rotation={[Math.PI / 2, 0, 0]}>
-            {/* Inner ring */}
             <mesh>
               <ringGeometry args={[4.8, 6.8, 128]} />
               <meshStandardMaterial
@@ -56,7 +54,6 @@ export default function PlanetModel({ texture, planetId }: PlanetModelProps) {
                 metalness={0.3}
               />
             </mesh>
-            {/* Middle ring - more detailed for close-up view */}
             <mesh>
               <ringGeometry args={[6.8, 8.8, 128]} />
               <meshStandardMaterial
@@ -68,7 +65,6 @@ export default function PlanetModel({ texture, planetId }: PlanetModelProps) {
                 metalness={0.2}
               />
             </mesh>
-            {/* Outer ring */}
             <mesh>
               <ringGeometry args={[8.8, 10.8, 128]} />
               <meshStandardMaterial
