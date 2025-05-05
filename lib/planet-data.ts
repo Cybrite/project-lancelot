@@ -11,7 +11,8 @@ export const PLANETS = [
     rotationPeriod: "58.6 days",
     orbitPeriod: "88 days",
     color: "#A9A9A9",
-    texturePath: "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1744570775/merciry_texture_wlo6bs.svg",
+    texturePath:
+      "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1744570775/merciry_texture_wlo6bs.svg",
     funFacts: [
       "Mercury has no atmosphere, which means there is no wind or weather.",
       "Despite being the closest planet to the Sun, it's not the hottest (Venus is).",
@@ -32,7 +33,8 @@ export const PLANETS = [
     rotationPeriod: "243 days",
     orbitPeriod: "225 days",
     color: "#E6E6FA",
-    texturePath: "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1744570748/venus_so0uim.svg",
+    texturePath:
+      "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1744570748/venus_so0uim.svg",
     funFacts: [
       "Venus rotates backward compared to other planets.",
       "It's the hottest planet with a surface temperature of about 475°C.",
@@ -53,7 +55,8 @@ export const PLANETS = [
     rotationPeriod: "24 hours",
     orbitPeriod: "365.25 days",
     color: "#1E90FF",
-    texturePath: "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1744570745/earth_m2lpzg.svg",
+    texturePath:
+      "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1744570745/earth_m2lpzg.svg",
     funFacts: [
       "Earth is the only planet not named after a god or goddess.",
       "71% of Earth's surface is covered by water.",
@@ -68,7 +71,8 @@ export const PLANETS = [
         size: 0.3,
         orbitDistance: 2,
         orbitSpeed: 0.5,
-        texturePath: "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1746457028/moom_h2ju0v.jpg",
+        texturePath:
+          "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1746457028/moom_h2ju0v.jpg",
       },
     ],
   },
@@ -84,7 +88,8 @@ export const PLANETS = [
     rotationPeriod: "24.6 hours",
     orbitPeriod: "687 days",
     color: "#FF4500",
-    texturePath: "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1744570746/mars_ovpzdd.svg",
+    texturePath:
+      "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1744570746/mars_ovpzdd.svg",
     funFacts: [
       "Mars has the largest volcano in the solar system, Olympus Mons.",
       "Mars has two small moons, Phobos and Deimos.",
@@ -99,7 +104,8 @@ export const PLANETS = [
         size: 0.1,
         orbitDistance: 1.5,
         orbitSpeed: 0.8,
-        texturePath: "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1746457028/phobos_qwek6t.jpg",
+        texturePath:
+          "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1746457028/phobos_qwek6t.jpg",
       },
       {
         id: "deimos",
@@ -108,7 +114,8 @@ export const PLANETS = [
         size: 0.08,
         orbitDistance: 2.5,
         orbitSpeed: 0.6,
-        texturePath: "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1746457028/deimos_drcbq5.jpg",
+        texturePath:
+          "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1746457028/deimos_drcbq5.jpg",
       },
     ],
   },
@@ -124,7 +131,8 @@ export const PLANETS = [
     rotationPeriod: "9.9 hours",
     orbitPeriod: "11.9 years",
     color: "#F5DEB3",
-    texturePath: "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1744570747/jupiter_sbb3xb.svg",
+    texturePath:
+      "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1744570747/jupiter_sbb3xb.svg",
     funFacts: [
       "Jupiter has the shortest day of all the planets, rotating once every 10 hours.",
       "The Great Red Spot is a storm that could fit 3 Earths inside it.",
@@ -139,7 +147,8 @@ export const PLANETS = [
         size: 0.2,
         orbitDistance: 3,
         orbitSpeed: 0.7,
-        texturePath: "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1746457716/Io_e6mmej.jpg",
+        texturePath:
+          "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1746457716/Io_e6mmej.jpg",
       },
       {
         id: "europa",
@@ -148,7 +157,8 @@ export const PLANETS = [
         size: 0.18,
         orbitDistance: 4,
         orbitSpeed: 0.6,
-        texturePath: "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1746457716/europa_sfeqor.jpg",
+        texturePath:
+          "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1746457716/europa_sfeqor.jpg",
       },
       {
         id: "ganymede",
@@ -157,7 +167,8 @@ export const PLANETS = [
         size: 0.25,
         orbitDistance: 5,
         orbitSpeed: 0.5,
-        texturePath: "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1746457716/genmede_meptzm.jpg",
+        texturePath:
+          "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1746457716/genmede_meptzm.jpg",
       },
       {
         id: "callisto",
@@ -166,7 +177,8 @@ export const PLANETS = [
         size: 0.22,
         orbitDistance: 6,
         orbitSpeed: 0.4,
-        texturePath: "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1746457716/callisto_bh3d6h.jpg",
+        texturePath:
+          "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1746457716/callisto_bh3d6h.jpg",
       },
     ],
   },
@@ -182,7 +194,8 @@ export const PLANETS = [
     rotationPeriod: "10.7 hours",
     orbitPeriod: "29.5 years",
     color: "#F0E68C",
-    texturePath: "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1744570745/saturn_luzgvs.svg",
+    texturePath:
+      "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1744570745/saturn_luzgvs.svg",
     funFacts: [
       "Saturn's rings extend up to 175,000 miles from the planet but are only about 30 feet thick.",
       "Saturn has at least 82 moons, with Titan being the largest.",
@@ -197,7 +210,8 @@ export const PLANETS = [
         size: 0.3,
         orbitDistance: 4,
         orbitSpeed: 0.4,
-        texturePath: "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1746457957/titan_wfoy1x.jpg",
+        texturePath:
+          "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1746457957/titan_wfoy1x.jpg",
       },
       {
         id: "rhea",
@@ -206,7 +220,8 @@ export const PLANETS = [
         size: 0.15,
         orbitDistance: 5,
         orbitSpeed: 0.3,
-        texturePath: "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1746457957/rhea_izmlxa.jpg",
+        texturePath:
+          "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1746457957/rhea_izmlxa.jpg",
       },
     ],
   },
@@ -222,7 +237,8 @@ export const PLANETS = [
     rotationPeriod: "17.2 hours",
     orbitPeriod: "84 years",
     color: "#00FFFF",
-    texturePath: "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1744570745/uranus_giwtx7.svg",
+    texturePath:
+      "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1744570745/uranus_giwtx7.svg",
     funFacts: [
       "Uranus rotates on its side with an axial tilt of about 98 degrees.",
       "It has 13 known rings, which are much fainter than Saturn's.",
@@ -237,7 +253,8 @@ export const PLANETS = [
         size: 0.15,
         orbitDistance: 3,
         orbitSpeed: 0.3,
-        texturePath: "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1746457957/titania_nen3zg.jpg",
+        texturePath:
+          "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1746457957/titania_nen3zg.jpg",
       },
       {
         id: "oberon",
@@ -246,7 +263,8 @@ export const PLANETS = [
         size: 0.14,
         orbitDistance: 4,
         orbitSpeed: 0.25,
-        texturePath: "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1746457957/oberon_sgyddh.jpg",
+        texturePath:
+          "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1746457957/oberon_sgyddh.jpg",
       },
     ],
   },
@@ -262,7 +280,8 @@ export const PLANETS = [
     rotationPeriod: "16.1 hours",
     orbitPeriod: "165 years",
     color: "#4169E1",
-    texturePath: "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1744570746/neptune_con1ja.svg",
+    texturePath:
+      "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1744570746/neptune_con1ja.svg",
     funFacts: [
       "Neptune has the strongest winds in the solar system, reaching up to 2,100 km/h.",
       "It was the first planet to be predicted mathematically before being observed.",
@@ -277,7 +296,8 @@ export const PLANETS = [
         size: 0.2,
         orbitDistance: 3,
         orbitSpeed: 0.2,
-        texturePath: "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1746457956/triton_sam3mr.jpg",
+        texturePath:
+          "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1746457956/triton_sam3mr.jpg",
       },
       {
         id: "nereid",
@@ -286,8 +306,42 @@ export const PLANETS = [
         size: 0.1,
         orbitDistance: 4,
         orbitSpeed: 0.15,
-        texturePath: "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1746457956/nereid_czmcwy.jpg",
+        texturePath:
+          "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1746457956/nereid_czmcwy.jpg",
       },
     ],
   },
+  // {
+  //   id: "mutthal",
+  //   name: "Mutthal (AYUSH)",
+  //   description:
+  //     "A mysterious fictional planet located beyond Neptune. Mutthal has unique crystalline formations and an atmosphere that shimmers with colorful aurora-like phenomena.",
+  //   size: 1.5,
+  //   realSize: "45,000 km",
+  //   orbitDistance: 75,
+  //   orbitSpeed: 0.004,
+  //   rotationPeriod: "22 hours",
+  //   orbitPeriod: "210 years",
+  //   color: "#9932CC",
+  //   texturePath:
+  //     "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1744570746/neptune_con1ja.svg",
+  //   funFacts: [
+  //     "Mutthal has crystal caves that extend for thousands of kilometers beneath its surface.",
+  //     "The atmosphere contains rare elements that create spectacular aurora displays.",
+  //     "Mutthal's magnetic field fluctuates unpredictably, creating mysterious electromagnetic phenomena.",
+  //     "Scientists believe Mutthal may have migrated from another solar system millions of years ago.",
+  //   ],
+  //   moons: [
+  //     {
+  //       id: "ayushian",
+  //       name: "Ayushian",
+  //       color: "#9370DB",
+  //       size: 0.2,
+  //       orbitDistance: 3,
+  //       orbitSpeed: 0.25,
+  //       texturePath:
+  //         "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1746457956/triton_sam3mr.jpg",
+  //     },
+  //   ],
+  // },
 ];
