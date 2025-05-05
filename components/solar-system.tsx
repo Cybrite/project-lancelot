@@ -28,8 +28,9 @@ export default function SolarSystem() {
           enablePan={true}
           enableZoom={true}
           enableRotate={true}
-          minDistance={10}
+          minDistance={5}
           maxDistance={200}
+          target={[0, 0, 0]}
         />
         <Stars
           radius={100}

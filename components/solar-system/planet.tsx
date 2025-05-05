@@ -7,12 +7,22 @@ import {
   calculateOrbitParameters,
   createOrbitPath,
 } from "./utils";
+import Moon from "./moon";
 
 interface PlanetProps {
   planet: {
     id: string;
     name: string;
     color: string;
+    moons: Array<{
+      id: string;
+      name: string;
+      color: string;
+      size: number;
+      orbitDistance: number;
+      orbitSpeed: number;
+      texturePath: string;
+    }>;
   };
   orbitDistance: number;
   orbitSpeed: number;
@@ -71,16 +81,7 @@ export default function Planet({
     (error: Error): THREE.Texture;
   }
 
-  const texture = useTexture(
-    texturePath,
-    ((loadedTexture: THREE.Texture): void => {
-      console.log(`Loaded texture: ${texturePath}`);
-    }) as TextureSuccessCallback,
-    ((error: Error): THREE.Texture => {
-      console.error(`Error loading texture ${texturePath}:`, error);
-      return createFallbackTexture(planet.color);
-    }) as TextureErrorCallback
-  );
+  const texture = useTexture(texturePath);
 
   const [hovered, setHovered] = useState(false);
   const [time, setTime] = useState(Math.random() * 100);
@@ -183,6 +184,21 @@ export default function Planet({
             </mesh>
           )}
         </mesh>
+
+        {/* Render moons */}
+        {planet.moons.map((moon) => (
+          <Moon
+            key={moon.id}
+            moon={moon}
+            orbitDistance={moon.orbitDistance}
+            orbitSpeed={moon.orbitSpeed}
+            size={moon.size}
+            texturePath={moon.texturePath}
+            orbitColor={moon.color}
+            isPaused={isPaused}
+            showLabel={showLabel}
+          />
+        ))}
       </group>
     </group>
   );
