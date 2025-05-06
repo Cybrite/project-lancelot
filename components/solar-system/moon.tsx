@@ -72,7 +72,7 @@ export default function Moon({
           <meshStandardMaterial map={texture} metalness={0.2} roughness={0.8} />
 
           {showLabel && (
-            <Html position={[0, size + 0.5, 0]} center distanceFactor={10}>
+            <Html position={[0, size + 0.5, 0]} center distanceFactor={15}>
               <div
                 className="moon-tooltip"
                 style={{ opacity: hovered ? 1 : 0.7 }}

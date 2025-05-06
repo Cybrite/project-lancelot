@@ -163,7 +163,7 @@ export default function Planet({
           )}
 
           {showLabel && (
-            <Html position={[0, size + 1, 0]} center distanceFactor={10}>
+            <Html position={[0, size + 1, 0]} center distanceFactor={30}>
               <div
                 className="planet-tooltip"
                 style={{ opacity: hovered ? 1 : 0.7 }}

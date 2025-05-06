@@ -185,7 +185,7 @@ export default function Comet({ orbitSpeed, isPaused, showLabel }: CometProps) {
         </group>
 
         {showLabel && (
-          <Html position={[0, 3, 0]} center distanceFactor={10}>
+          <Html position={[0, 3, 0]} center distanceFactor={20}>
             <div
               className="planet-tooltip"
               style={{ opacity: hovered ? 1 : 0.7 }}
