@@ -11,19 +11,24 @@ interface SolarSystemSceneProps {
   orbitSpeed: number;
   isPaused: boolean;
   showLabels: boolean;
+  onPlanetFocus: (position: number[]) => void;
 }
 
 export default function SolarSystemScene({
   orbitSpeed,
   isPaused,
   showLabels,
+  onPlanetFocus,
 }: SolarSystemSceneProps) {
   const router = useRouter();
 
   return (
     <Suspense fallback={<Html center>Loading Solar System...</Html>}>
       <group>
-        <Sun position={[0, 0, 0]} />
+        <Sun 
+          position={[0, 0, 0]} 
+          onClick={() => onPlanetFocus([0, 0, 0])}
+        />
 
         <AsteroidBelt orbitDistance={30} isPaused={isPaused} />
 
@@ -44,7 +49,11 @@ export default function SolarSystemScene({
             orbitColor={planet.color}
             isPaused={isPaused}
             showLabel={showLabels}
-            onClick={() => router.push(`/planet/${planet.id}`)}
+            onClick={(position) => {
+              onPlanetFocus(position);
+              // Keep the navigation functionality if needed
+              // router.push(`/planet/${planet.id}`);
+            }}
           />
         ))}
       </group>

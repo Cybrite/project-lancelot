@@ -4,9 +4,10 @@ import * as THREE from "three";
 
 interface SunProps {
   position?: [number, number, number];
+  onClick?: (position: [number, number, number]) => void;
 }
 
-export default function Sun({ position = [0, 0, 0] }: SunProps) {
+export default function Sun({ position = [0, 0, 0], onClick }: SunProps) {
   const sunRef = useRef<THREE.Mesh>(null);
 
   const sunTexture = useMemo(() => {
@@ -48,7 +49,16 @@ export default function Sun({ position = [0, 0, 0] }: SunProps) {
   });
 
   return (
-    <mesh ref={sunRef} position={position}>
+    <mesh 
+      ref={sunRef} 
+      position={position}
+      onClick={(e) => {
+        e.stopPropagation();
+        if (onClick) {
+          onClick(position);
+        }
+      }}
+    >
       <sphereGeometry args={[5, 32, 32]} />
       <meshStandardMaterial
         map={sunTexture}

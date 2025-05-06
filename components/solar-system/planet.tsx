@@ -31,7 +31,7 @@ interface PlanetProps {
   orbitColor: string;
   isPaused: boolean;
   showLabel: boolean;
-  onClick: () => void;
+  onClick: (planetPosition: [number, number, number]) => void;
 }
 
 export default function Planet({
@@ -47,6 +47,7 @@ export default function Planet({
 }: PlanetProps) {
   const planetRef = useRef<THREE.Group>(null);
   const orbitRef = useRef<THREE.Line>(null);
+  const [planetPosition, setPlanetPosition] = useState<[number, number, number]>([0, 0, 0]);
 
   // Get eccentricity based on planet id
   const eccentricity =
@@ -105,6 +106,9 @@ export default function Planet({
 
       // Rotate planet
       planetRef.current.rotation.y += delta * 0.5;
+
+      const currentPosition = planetRef.current.position.toArray();
+      setPlanetPosition(currentPosition);
     }
   });
 
@@ -125,7 +129,12 @@ export default function Planet({
         <mesh
           onPointerOver={() => setHovered(true)}
           onPointerOut={() => setHovered(false)}
-          onClick={onClick}
+          onClick={(e) => {
+            e.stopPropagation();
+            if (onClick) {
+              onClick(planetPosition);
+            }
+          }}
         >
           <sphereGeometry args={[size, 32, 32]} />
           <meshStandardMaterial map={texture} metalness={0.2} roughness={0.8} />
