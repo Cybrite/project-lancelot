@@ -68,7 +68,7 @@ export default function AudioController() {
   if (audioError) {
     return (
       <div className="bg-black/50 backdrop-blur-md p-3 rounded-lg border border-white/20 flex items-center space-x-2">
-        <span className="text-xs text-gray-400">Audio unavailable</span>
+        <span className="text-xs text-gray-400">No Audio</span>
       </div>
     )
   }
