@@ -49,7 +49,7 @@ export default function PlanetStats({
         <CardContent>
           <p className="text-2xl font-bold">
             {position}
-            <span className="text-sm text-gray-400"> from Sun</span>
+            <span className="text-sm text-gray-400"> From Sun</span>
           </p>
         </CardContent>
       </Card>
