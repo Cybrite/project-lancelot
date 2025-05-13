@@ -9,6 +9,23 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Interactive Solar System",
   description: "Explore our solar system in 3D",
+  icons: "/favicon.ico",
+  openGraph: {
+    title: "Interactive Solar System",
+    description: "Explore our solar system in 3D",
+    url: "https://project-lancelot.vercel.app/",
+    siteName: "Interactive Solar System",
+    images: [
+      {
+        url: "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1745042336/waste2way/mif3awhydzpz4d4hp6af.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Project Lancelot",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
