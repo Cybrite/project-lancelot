@@ -311,37 +311,37 @@ export const PLANETS = [
       },
     ],
   },
-  // {
-  //   id: "mutthal",
-  //   name: "Mutthal (AYUSH)",
-  //   description:
-  //     "A mysterious fictional planet located beyond Neptune. Mutthal has unique crystalline formations and an atmosphere that shimmers with colorful aurora-like phenomena.",
-  //   size: 1.5,
-  //   realSize: "45,000 km",
-  //   orbitDistance: 75,
-  //   orbitSpeed: 0.004,
-  //   rotationPeriod: "22 hours",
-  //   orbitPeriod: "210 years",
-  //   color: "#9932CC",
-  //   texturePath:
-  //     "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1744570746/neptune_con1ja.svg",
-  //   funFacts: [
-  //     "Mutthal has crystal caves that extend for thousands of kilometers beneath its surface.",
-  //     "The atmosphere contains rare elements that create spectacular aurora displays.",
-  //     "Mutthal's magnetic field fluctuates unpredictably, creating mysterious electromagnetic phenomena.",
-  //     "Scientists believe Mutthal may have migrated from another solar system millions of years ago.",
-  //   ],
-  //   moons: [
-  //     {
-  //       id: "ayushian",
-  //       name: "Ayushian",
-  //       color: "#9370DB",
-  //       size: 0.2,
-  //       orbitDistance: 3,
-  //       orbitSpeed: 0.25,
-  //       texturePath:
-  //         "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1746457956/triton_sam3mr.jpg",
-  //     },
-  //   ],
-  // },
+  {
+    id: "mutthal",
+    name: "Mutthal (AYUSH)",
+    description:
+      "A mysterious fictional planet located beyond Neptune. Mutthal has unique crystalline formations and an atmosphere that shimmers with colorful aurora-like phenomena with Whistish colors.",
+    size: 1.5,
+    realSize: "45,000 km",
+    orbitDistance: 75,
+    orbitSpeed: 0.004,
+    rotationPeriod: "22 hours",
+    orbitPeriod: "210 years",
+    color: "#fff",
+    texturePath:
+      "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1747133985/WhatsApp_Image_2025-05-13_at_16.28.36_a8z6tm.jpg",
+    funFacts: [
+      "Mutthal(AYUSH) is a fictional planet created for this project. It does not exist in reality.",
+      "The atmosphere contains unusal creatures that are white AF and love video games.",
+      "Mutthal's magnetic field fluctuates unpredictably, creating mysterious phenomena where calppings are heard.",
+      "Scientists believe Mutthal may have migrated from another solar system millions of years ago.",
+    ],
+    moons: [
+      {
+        id: "ayushian",
+        name: "Ayushian",
+        color: "#9370DB",
+        size: 0.2,
+        orbitDistance: 3,
+        orbitSpeed: 0.25,
+        texturePath:
+          "https://res.cloudinary.com/dqqyuvg1v/image/upload/v1746457956/triton_sam3mr.jpg",
+      },
+    ],
+  },
 ];
