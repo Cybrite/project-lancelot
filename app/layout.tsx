@@ -26,6 +26,19 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
+  twitter:{
+    card: "summary_large_image",
+    title: "Project Lancelot",
+    description: "Explore our solar system in 3D",
+    images: [
+      {
+        url: "/opengraph-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Project Lancelot",
+      },
+    ],
+  }
 };
 
 export default function RootLayout({
