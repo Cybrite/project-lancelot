@@ -30,14 +30,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Project Lancelot",
     description: "Explore our solar system in 3D",
-    images: [
-      {
-        url: "/opengraph-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Project Lancelot",
-      },
-    ],
+    images: ["/opengraph-image.jpg"],
   }
 };
 
