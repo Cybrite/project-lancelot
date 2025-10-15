@@ -69,7 +69,7 @@ export default function AboutPage() {
           <CardContent>
             <div className="flex flex-wrap gap-4 justify-center">
               <Link
-                href="https://github.com"
+                href="https://github.com/cybrite"
                 target="_blank"
                 className="flex items-center space-x-2 bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-md transition-colors"
               >
@@ -77,17 +77,17 @@ export default function AboutPage() {
                 <span>GitHub</span>
               </Link>
 
-              <Link
+              {/* <Link
                 href="https://twitter.com"
                 target="_blank"
                 className="flex items-center space-x-2 bg-blue-800 hover:bg-blue-700 px-4 py-2 rounded-md transition-colors"
               >
                 <Twitter className="h-5 w-5" />
                 <span>Twitter</span>
-              </Link>
+              </Link> */}
 
               <Link
-                href="mailto:contact@solarexplorer.com"
+                href="mailto:harshtanishq2002@gmail.com"
                 className="flex items-center space-x-2 bg-purple-800 hover:bg-purple-700 px-4 py-2 rounded-md transition-colors"
               >
                 <Mail className="h-5 w-5" />
